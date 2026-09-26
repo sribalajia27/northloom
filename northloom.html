@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Northloom — Sri Balaji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F1F2F4;
+    --ink: #14161B;
+    --muted: #5B5F66;
+    --accent: #8A6A32;
+    --line: rgba(20,22,27,0.12);
+    --line-strong: rgba(20,22,27,0.22);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1116; --ink: #ECEAE4; --muted: #9A9FA8; --accent: #C9A45C;
+      --line: rgba(236,234,228,0.12); --line-strong: rgba(236,234,228,0.22);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1116; --ink: #ECEAE4; --muted: #9A9FA8; --accent: #C9A45C;
+    --line: rgba(236,234,228,0.12); --line-strong: rgba(236,234,228,0.22);
+  }
+  body[data-route="apeiron"], body[data-route="apeiron-privacy"] { --accent: #6C63FF; }
+  body[data-route="bakecost"], body[data-route="bakecost-privacy"] { --accent: #D98B3F; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  h1, h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .accent-link { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; font-weight: 500; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 760px; margin: 0 auto; padding: 18px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px 24px;
+  }
+  .wordmark { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: color 0.15s ease, border-color 0.15s ease; }
+  nav a:hover { color: var(--ink); }
+  nav a.active { color: var(--ink); border-color: var(--accent); }
+
+  .page { padding: 88px 0; }
+  .page + footer { border-top: 1px solid var(--line); }
+
+  #hero { padding-top: 108px; padding-bottom: 96px; }
+  .hero-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
+  .hero-text { flex: 1 1 400px; }
+  #hero h1 { font-size: clamp(2.5rem, 6.4vw, 3.9rem); line-height: 1.06; max-width: 11ch; letter-spacing: -0.015em; }
+  #hero p { color: var(--muted); max-width: 44ch; margin-top: 24px; font-size: 1.05rem; }
+  #hero .scroll-link { display: inline-block; margin-top: 36px; font-size: 0.95rem; }
+  .hero-visual-wrap { flex: 0 0 auto; position: relative; width: 128px; height: 128px; }
+  .hero-visual-wrap::before {
+    content: ""; position: absolute; inset: -30px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent) 0%, transparent 70%);
+  }
+  .hero-visual { position: relative; width: 128px; height: 128px; }
+  .hero-visual circle { fill: none; stroke: var(--accent); }
+  .hero-visual .core { fill: var(--accent); stroke: none; }
+  @media (max-width: 560px) { .hero-visual-wrap, .hero-visual { width: 84px; height: 84px; } }
+
+  h2.section-title { font-size: 1.6rem; margin-bottom: 40px; }
+
+  .app-row { display: flex; flex-direction: column; gap: 10px; padding: 28px 0; border-top: 1px solid var(--line); }
+  .app-row:first-of-type { border-top: none; padding-top: 0; }
+  .app-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .app-head h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.35rem; margin: 0; }
+  .status { display: inline-flex; align-items: center; gap: 7px; font-size: 0.88rem; color: var(--muted); }
+  .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex: none; }
+  .status.live .dot { background: var(--accent); }
+  .app-row p { color: var(--muted); max-width: 52ch; margin: 0; }
+  @media (min-width: 640px) {
+    .app-row { display: grid; grid-template-columns: 190px 1fr auto; gap: 6px 28px; align-items: center; }
+    .app-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .app-row p { grid-column: 2; }
+    .app-row .view-link { grid-column: 3; white-space: nowrap; }
+  }
+
+  .back-link { display: inline-block; font-size: 0.9rem; color: var(--muted); text-decoration: none; margin-bottom: 28px; }
+  .back-link:hover { color: var(--ink); }
+
+  .detail p { color: var(--muted); max-width: 62ch; }
+  .detail p + p { margin-top: 18px; }
+  .detail-links { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 28px; }
+  .detail .note { margin-top: 30px; font-size: 0.92rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+
+  .pull-quote {
+    font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.35;
+    color: var(--ink); max-width: 20ch; margin: 34px 0; padding-left: 22px; border-left: 2px solid var(--accent);
+  }
+
+  .journey { margin: 40px 0; }
+  .journey-item { position: relative; display: flex; align-items: center; gap: 16px; padding: 10px 0 10px 2px; border-left: 1px solid var(--line-strong); padding-left: 24px; }
+  .journey-item .mark { position: absolute; left: -4.5px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .journey-item span.label { font-size: 0.98rem; color: var(--ink); }
+  .journey-item:nth-child(1) .mark, .journey-item:nth-child(1) span.label { opacity: 0.5; }
+  .journey-item:nth-child(2) .mark, .journey-item:nth-child(2) span.label { opacity: 0.58; }
+  .journey-item:nth-child(3) .mark, .journey-item:nth-child(3) span.label { opacity: 0.66; }
+  .journey-item:nth-child(4) .mark, .journey-item:nth-child(4) span.label { opacity: 0.74; }
+  .journey-item:nth-child(5) .mark, .journey-item:nth-child(5) span.label { opacity: 0.81; }
+  .journey-item:nth-child(6) .mark, .journey-item:nth-child(6) span.label { opacity: 0.88; }
+  .journey-item:nth-child(7) .mark, .journey-item:nth-child(7) span.label { opacity: 0.94; }
+  .journey-item:nth-child(8) .mark, .journey-item:nth-child(8) span.label { opacity: 1; }
+  .journey-item:nth-child(9) .mark, .journey-item:nth-child(9) span.label { opacity: 1; font-weight: 500; }
+  .journey-item:last-child { border-left: 1px solid transparent; }
+
+  .policy h2 { font-size: 1.4rem; }
+  .policy .updated { color: var(--muted); font-size: 0.88rem; margin-top: 8px; margin-bottom: 30px; }
+  .policy p { max-width: 62ch; color: var(--ink); }
+  .policy p + p { margin-top: 16px; }
+  .policy.stub p { color: var(--muted); }
+
+  #about p { color: var(--muted); max-width: 58ch; }
+  #about p + p { margin-top: 16px; }
+
+  footer { padding: 56px 0 80px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer a { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; font-size: 0.95rem; }
+  footer .copy { color: var(--muted); font-size: 0.88rem; }
+
+  @media (max-width: 640px) {
+    .page { padding: 60px 0; }
+    #hero { padding-top: 84px; padding-bottom: 64px; }
+    .wrap { padding: 0 22px; }
+    .nav-inner { padding: 16px 22px; }
+  }
+</style>
+</head>
+<body data-route="home">
+
+<header>
+  <div class="nav-inner">
+    <a class="wordmark" href="#home">Northloom</a>
+    <nav>
+      <ul>
+        <li><a href="#home" data-nav="home">Apps</a></li>
+        <li><a href="#about" data-nav="about">About</a></li>
+        <li><a href="#contact-block">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page" data-page="home">
+    <div id="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <h1>Building small apps with big ideas.</h1>
+          <p>Northloom is Sri Balaji's independent app studio — a small number of apps, each one considered carefully before it ships.</p>
+        </div>
+        <div class="hero-visual-wrap">
+          <svg class="hero-visual" viewBox="0 0 128 128" aria-hidden="true">
+            <circle cx="64" cy="64" r="58" stroke-width="1" opacity="0.25"/>
+            <circle cx="64" cy="64" r="38" stroke-width="1" opacity="0.45"/>
+            <circle cx="64" cy="64" r="18" stroke-width="1" opacity="0.7"/>
+            <circle class="core" cx="64" cy="64" r="2.6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="wrap" style="margin-top: 20px;">
+      <h2 class="section-title">Apps</h2>
+      <div class="app-row">
+        <div class="app-head">
+          <h3>Apeiron</h3>
+          <span class="status"><span class="dot"></span>In development</span>
+        </div>
+        <p>A journey outward, from where you're standing to the edge of the observable universe.</p>
+        <a class="view-link accent-link" href="#apeiron">View Apeiron</a>
+      </div>
+      <div class="app-row">
+        <div class="app-head">
+          <h3>BakeCost</h3>
+          <span class="status live"><span class="dot"></span>Available</span>
+        </div>
+        <p>A costing and pricing calculator for home bakers and small kitchens.</p>
+        <a class="view-link accent-link" href="#bakecost">View BakeCost</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" data-page="apeiron" hidden>
+    <div class="wrap detail">
+      <a class="back-link" href="#home">← All apps</a>
+      <h2 class="section-title">Apeiron</h2>
+      <p>Apeiron starts with you, then pulls back one scale at a time. Each step is a change of distance, not just a change of view.</p>
+      <div class="journey">
+        <div class="journey-item"><span class="mark"></span><span class="label">You</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">Your surroundings</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">Earth</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">The Moon</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">The Sun</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">The Solar System</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">The Milky Way</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">The Local Neighbourhood</span></div>
+        <div class="journey-item"><span class="mark"></span><span class="label">The Observable Universe</span></div>
+      </div>
+      <p class="pull-quote">Some things that feel enormous up close get quieter when you see how much space they actually take up.</p>
+      <p>Apeiron doesn't try to make anything feel small on purpose. It just shows the scale, and lets that do the work.</p>
+      <p class="note">Currently in development, with no release date yet.</p>
+      <div class="detail-links">
+        <a class="accent-link" href="#apeiron-privacy">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" data-page="apeiron-privacy" hidden>
+    <div class="wrap policy stub">
+      <a class="back-link" href="#apeiron">← Apeiron</a>
+      <h2>Apeiron — Privacy Policy</h2>
+      <p>Apeiron is still in development. Its privacy policy will be published on this page before it's released.</p>
+    </div>
+  </section>
+
+  <section class="page" data-page="bakecost" hidden>
+    <div class="wrap detail">
+      <a class="back-link" href="#home">← All apps</a>
+      <h2 class="section-title">BakeCost</h2>
+      <p>BakeCost is a simple costing and pricing calculator built for home bakers and small kitchens. Enter your ingredients, quantities and overheads, and it works out what to charge — no spreadsheet required.</p>
+      <p>It's built to be quick to open, quick to use, and to stay out of your way otherwise.</p>
+      <div class="detail-links">
+        <a class="accent-link" href="#">Get it on Google Play</a>
+        <a class="accent-link" href="#bakecost-privacy">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" data-page="bakecost-privacy" hidden>
+    <div class="wrap policy">
+      <a class="back-link" href="#bakecost">← BakeCost</a>
+      <h2>BakeCost — Privacy Policy</h2>
+      <p class="updated">Last updated 26 September 2026</p>
+      <p>BakeCost is built to work entirely on your device. It does not require an account, and it does not collect, store, or share any personal information.</p>
+      <p>Recipes, ingredients, quantities and pricing you enter are saved locally on your device only. Northloom cannot see this data, and it is never sent anywhere.</p>
+      <p>If this ever changes — for example, to add an optional backup feature — this page will be updated first, and the change will also be reflected in BakeCost's Play Store listing.</p>
+      <p>Questions about this policy can be sent to <a class="accent-link" href="mailto:hello@northloom.dev">hello@northloom.dev</a>.</p>
+    </div>
+  </section>
+
+  <section class="page" data-page="about" hidden>
+    <div class="wrap">
+      <h2 class="section-title">About</h2>
+      <p>Northloom is the name Sri Balaji builds apps under — a one-person studio making a small number of things well, rather than a large number of things quickly.</p>
+      <p>Each app starts from a simple, specific idea, and stays that way for as long as possible.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact-block">
+  <div class="wrap">
+    <a href="mailto:hello@northloom.dev">hello@northloom.dev</a>
+    <span class="copy">Northloom, 2026</span>
+  </div>
+</footer>
+
+<script>
+  var routes = ['home','apeiron','apeiron-privacy','bakecost','bakecost-privacy','about'];
+  function showRoute() {
+    var hash = location.hash.replace('#','');
+    if (routes.indexOf(hash) === -1) hash = 'home';
+    document.body.setAttribute('data-route', hash);
+    document.querySelectorAll('.page').forEach(function(el) {
+      el.hidden = el.getAttribute('data-page') !== hash;
+    });
+    var navHome = hash === 'home' || hash.indexOf('apeiron') === 0 || hash.indexOf('bakecost') === 0;
+    document.querySelectorAll('nav a').forEach(function(a) { a.classList.remove('active'); });
+    var target = navHome ? 'home' : hash;
+    var link = document.querySelector('nav a[data-nav="' + target + '"]');
+    if (link) link.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', showRoute);
+  showRoute();
+</script>
+
+</body>
+</html>
